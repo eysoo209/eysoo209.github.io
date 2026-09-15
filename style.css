@@ -1,0 +1,119 @@
+/* Layout and typography adapted from https://seunghyun-an.github.io/style.css. */
+:root {
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --color-text: #111;
+    --color-subtext: #555;
+    --color-bg: #fff;
+    --max-width: 800px;
+    --spacing-section: 2rem;
+    --spacing-item: 1.5rem;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    max-width: var(--max-width);
+    overflow-wrap: break-word;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.header-content { flex: 1; min-width: 0; }
+.header-links { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--color-subtext); }
+.credentials { margin: -0.25rem 0 0.5rem; color: var(--color-subtext); }
+h1 { margin: 0 0 0.5rem; font-size: 2.2rem; font-weight: 700; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3rem;
+    margin-top: var(--spacing-section);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+h3, h4 { font-size: 1.1rem; margin: 0; font-weight: 600; }
+.subsection-heading { margin: 1.75rem 0 0.75rem; color: var(--color-subtext); }
+a { color: #0066cc; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+.profile {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+}
+.profile img {
+    width: 240px;
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border: 1px solid #ddd;
+    background-color: #eee;
+}
+.profile-email { font-size: 0.875rem; margin-top: 5px; }
+ul { margin: 0.5rem 0 0 1.2rem; padding: 0; }
+li { margin-bottom: 0.3rem; }
+.entry { margin-bottom: var(--spacing-item); }
+.entry p { margin: 0.35rem 0 0; }
+.entry-header, .entry-sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+}
+.entry-header h3 { flex: 1 1 auto; min-width: 0; }
+.entry-sub { color: var(--color-subtext); margin-bottom: 0.2rem; font-style: italic; }
+.location, .date { font-size: 0.95rem; }
+.location, .publication-meta, .section-note { color: var(--color-subtext); }
+.entry .authors { margin: 0.2rem 0; }
+.spaced-list li { margin-bottom: 0.65rem; }
+footer {
+    margin-top: var(--spacing-section);
+    padding: 0.75rem 0 1.5rem;
+    border-top: 1px solid #ddd;
+    color: var(--color-subtext);
+    font-size: 0.875rem;
+}
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    z-index: 1;
+}
+.skip-link:focus { left: 1rem; }
+
+@media (max-width: 760px) {
+    header { flex-direction: column-reverse; align-items: center; gap: 1.25rem; }
+    .header-content { width: 100%; text-align: left; }
+    .header-content h1, .credentials, .header-links { text-align: center; }
+    .entry-header, .entry-sub { flex-direction: column; align-items: flex-start; }
+}
+
+@media print {
+    body { max-width: none; padding: 0; font-size: 10pt; }
+    header { flex-direction: row; }
+    .profile, .skip-link { display: none; }
+    .header-content h1, .credentials, .header-links { text-align: left; }
+    h2 { break-after: avoid; }
+    .entry { break-inside: avoid; }
+    a { color: inherit; }
+}
